@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useStore } from 'store';
 import styled from 'styled-components';
 import { math } from 'polished';
@@ -26,11 +26,22 @@ const GridWrapper = styled.div`
     visibility: ${props => (props.shouldShow ? 'visible' : 'hidden')};
 `;
 
-const Next = styled.div`
+const Next = styled.label`
     color: white;
+    background-color: ${({ theme }) => theme.gridCoatingColor};
     text-transform: uppercase;
     margin-bottom: 10px;
     text-align: center;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 6px;
+    display: block;
+    cursor: pointer;
+    transition: background-color 200ms;
+
+    :hover {
+        background-color: ${({ theme }) => theme.gridCoatingColorDarken};
+    }
 `;
 
 const OuterCell = styled(GridCell)`
@@ -55,16 +66,18 @@ function NextBlock() {
         }
     }
 
+    const [seeNext, setSeeNext] = useState(true)
+
     return (
         <ContainerCoating>
-            <Container>
-                <Next>Next</Next>
-                <GridWrapper shouldShow={gameState !== GAME_STATES.NEW_GAME}>
+            <Container onClick={e => e.preventDefault() || setSeeNext(!seeNext)}>
+                <Next>{seeNext ? "Next" : "?"}</Next>{
+                <GridWrapper shouldShow={gameState !== GAME_STATES.NEW_GAME && seeNext}>
                     <Grid height={shape.length} width={shape[0].length}>
                         {cells}
                     </Grid>
                 </GridWrapper>
-            </Container>
+            }</Container>
         </ContainerCoating>
     );
 }
