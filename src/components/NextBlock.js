@@ -51,7 +51,7 @@ const OuterCell = styled(GridCell)`
 `;
 
 function NextBlock() {
-    const { nextBlockQueue, gameState } = useStore();
+    const { nextBlockQueue, gameState, isHelpOn, toggleHelp } = useStore();
     const { shape, type } = nextBlockQueue[0];
 
     let cells = [];
@@ -66,13 +66,11 @@ function NextBlock() {
         }
     }
 
-    const [seeNext, setSeeNext] = useState(true)
-
     return (
         <ContainerCoating>
-            <Container onClick={e => e.preventDefault() || setSeeNext(!seeNext)}>
-                <Next>{seeNext ? "Next" : "?"}</Next>{
-                <GridWrapper shouldShow={gameState !== GAME_STATES.NEW_GAME && seeNext}>
+            <Container onClick={e => e.preventDefault() || toggleHelp()}>
+                <Next>{isHelpOn ? "Next" : "?"}</Next>{
+                <GridWrapper shouldShow={gameState !== GAME_STATES.NEW_GAME && isHelpOn}>
                     <Grid height={shape.length} width={shape[0].length}>
                         {cells}
                     </Grid>

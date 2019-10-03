@@ -8,7 +8,7 @@ import {
     TITLE_LETTER_ANIMATION_DURATION_CHANGE,
 } from 'style/animations';
 
-const TITLE_LETTERS = ['R', 'e', 'a', 'c', 't', '', 'T', 'e', 't', 'r', 'i', 's'];
+const TITLE_LETTERS = ['F','i','n','a','n','c','e', '', 'T', 'e', 't', 'r', 'i', 's'];
 
 const StyledTitle = styled.span`
     position: fixed;
@@ -29,7 +29,7 @@ const TitleLetter = styled.span`
     animation: ${horizontalFadeSlide} ${props => props.duration}ms;
     animation-delay: ${props => props.delay}ms;
     animation-fill-mode: forwards;
-    width: ${props => (props.isSpace ? '6px' : 'initial')};
+    width: ${props => (props.isSpace ? '16px' : 'initial')};
     font-size: 60px;
     opacity: 0;
 `;

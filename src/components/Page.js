@@ -14,7 +14,7 @@ const GameArea = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
+    min-height: 100vh;
     padding: 0 20px;
 `;
 
@@ -22,14 +22,18 @@ const Header = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 20px;
-    min-height: 10vh;
+    padding: 0px;
+    height: 0px;
     color: white;
 `;
 
-const RandomizeButton = styled.div`
+const RandomizeButton = styled.span`
+    position: fixed;
+    margin-top: 70px;
+    margin-right: 20px;
+
     color: white;
-    background-color: transparent;
+    background-color: ${({ theme }) => theme.gridCoatingColor};
     border: 2px solid white;
     border-radius: 6px;
     padding: 10px;
@@ -47,6 +51,7 @@ const RandomizeButton = styled.div`
         color: #ccd1d1;
         border-color: #ccd1d1;
         transform: translateY(-2px);
+        background-color: ${({ theme }) => theme.gridCoatingColorDarken};
     }
 `;
 

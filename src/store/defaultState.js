@@ -17,6 +17,8 @@ export function generateStartingBlock() {
 }
 
 export default {
+    isHelpOn: true,
+    score: 0,
     grid: createGrid(GRID_HEIGHT, GRID_WIDTH),
     currentBlock: generateStartingBlock(),
     nextBlockQueue: createNextBlockQueue(),

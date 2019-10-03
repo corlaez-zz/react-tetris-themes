@@ -20,7 +20,7 @@ const GridContainer = styled.div`
     display: inline-flex;
     justify-content: center;
     background-color: ${({ theme }) => theme.gridContainerBackgroundColor};
-    padding: 40px;
+    padding: 10px;
     border-radius: 10px;
     margin: auto;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
@@ -32,7 +32,7 @@ const GridContainer = styled.div`
 `;
 
 const InnerCell = styled(InnerGridCell)`
-    opacity: ${props => (props.isGhostBlock ? 0.5 : 1)};
+    opacity: ${props => (props.isGhostBlock ? (props.showGhostBlock ? 0.5 : 0) : 1)};
 
     ${props =>
         props.animatingClear &&
@@ -98,6 +98,7 @@ function Game() {
         gameState,
         setGameState,
         togglePauseGame,
+        isHelpOn
     } = store;
 
     const gameTick = React.useRef(null);
@@ -185,6 +186,7 @@ function Game() {
                     <GridCell key={`${i}${j}`}>
                         <InnerCell
                             blockType={blockType}
+                            showGhostBlock={isHelpOn}
                             isGhostBlock={isGhostBlock && !isCurrentBlock}
                             animatingClear={animatingClear}
                             animatingCollapseRows={animatingCollapseRows}

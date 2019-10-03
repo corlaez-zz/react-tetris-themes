@@ -43,6 +43,16 @@ function SideColumn() {
 
     return (
         <Container>
+            <span style={{color:'white'}}>
+            <br/>
+            If we know with clarity<br/>
+            how many people<br/>
+            is hired in each<br/>
+            department we will<br/>
+            have a better insight<br/>
+            of were to place our<br/>
+            next workers.<br/><br/>
+            </span>
             <NextBlock />
             <Controls>
                 <ControlButton onClick={togglePauseGame}>

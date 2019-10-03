@@ -29,6 +29,8 @@ function StateProvider(props) {
     const [animatedRows, setAnimatedRows] = React.useState([]);
     const [gameSpeed, setGameSpeed] = React.useState(defaultState.gameSpeed);
     const [gameState, setGameState] = React.useState(defaultState.gameState);
+    const [score, setScore] = React.useState(defaultState.score);
+    const [isHelpOn, setIsHelpOn] = React.useState(defaultState.isHelpOn);
     const currentBlockCellCoordinateSet = React.useRef(null);
     const ghostBlockCellCoordinateSet = React.useRef(null);
 
@@ -249,6 +251,10 @@ function StateProvider(props) {
         });
     }
 
+    function toggleHelp() {
+        setIsHelpOn(prevState => !prevState);
+    }
+
     /**
      * Full reset of game state.
      */
@@ -307,8 +313,12 @@ function StateProvider(props) {
             togglePauseGame,
             restartGame,
             randomizeTheme: props.randomizeTheme,
+            isHelpOn,
+            toggleHelp,
+            setScore,
+            score
         }),
-        [grid, currentBlock, nextBlockQueue, animatedRows, gameSpeed, gameState]
+        [grid, currentBlock, nextBlockQueue, animatedRows, gameSpeed, gameState, isHelpOn, score]
     );
 
     return <StateContext.Provider value={state}>{props.children}</StateContext.Provider>;
