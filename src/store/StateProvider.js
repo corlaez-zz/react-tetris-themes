@@ -83,6 +83,7 @@ function StateProvider(props) {
 
     async function commitCurrentBlock() {
         if (!canPerformAction()) return;
+        setScore(s => s + 10)
 
         /**
          * This is the check for the game over condition.
@@ -204,6 +205,10 @@ function StateProvider(props) {
                 return result;
             }, []);
 
+            if(clearedRowNumbers.length > 0) {
+                score > 1000 && setGameSpeed(gameSpeed - 20)
+                setScore(s => s + 100 * clearedRowNumbers.length)
+            }
             /**
              * If we have filled rows to clear,
              * we first need to animate the clearing of those rows.
@@ -259,6 +264,7 @@ function StateProvider(props) {
      * Full reset of game state.
      */
     function restartGame() {
+        setScore(0)
         setGrid(defaultState.grid);
         setCurrentBlock(generateStartingBlock());
         setNextBlockQueue(createNextBlockQueue());
@@ -318,7 +324,7 @@ function StateProvider(props) {
             setScore,
             score
         }),
-        [grid, currentBlock, nextBlockQueue, animatedRows, gameSpeed, gameState, isHelpOn, score]
+        [grid, currentBlock, moveCurrentBlock, dropBlock, rotateCurrentBlock, nextBlockQueue, animatedRows, gameSpeed, gameState, isHelpOn, score]
     );
 
     return <StateContext.Provider value={state}>{props.children}</StateContext.Provider>;

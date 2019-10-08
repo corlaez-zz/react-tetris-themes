@@ -17,6 +17,15 @@ const Controls = styled.div`
     justify-content: space-between;
 `;
 
+const Score = styled.div`
+    margin-top: 10px;
+    display: flex;
+    font-size: 30px;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+`;
+
 const ControlButton = styled.div`
     display: inline-flex;
     justify-content: center;
@@ -39,7 +48,7 @@ const ControlButton = styled.div`
 `;
 
 function SideColumn() {
-    const { togglePauseGame, restartGame } = useStore();
+    const { score, togglePauseGame, restartGame } = useStore();
 
     return (
         <Container>
@@ -62,6 +71,8 @@ function SideColumn() {
                     <ReplayIcon />
                 </ControlButton>
             </Controls>
+            <Score>Score</Score>
+            <Score>{score}</Score>
         </Container>
     );
 }

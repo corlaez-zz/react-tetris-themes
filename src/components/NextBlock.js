@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useStore } from 'store';
 import styled from 'styled-components';
 import { math } from 'polished';
