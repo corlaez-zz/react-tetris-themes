@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo, useRef} from 'react';
 import { useStore } from 'store';
 import styled from 'styled-components';
 import { math } from 'polished';
@@ -22,6 +22,7 @@ const GridWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: ${props => math(`${props.theme.cellSize} * 2`)};
     visibility: ${props => (props.shouldShow ? 'visible' : 'hidden')};
 `;
@@ -50,6 +51,27 @@ const OuterCell = styled(GridCell)`
     border-radius: ${({ theme }) => theme.blockStyles.borderRadius || 'initial'};
 `;
 
+const NextBlockLabel = styled.div`
+margin-top: 10px;
+margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+`;
+
+const labelArray = [
+    'consultant',
+    'DMI',
+    'Non-DMI',
+    'FTE',
+    'contractor',
+    'IT',
+    'Growth',
+    'Mandate',
+    'Compliance',
+]
+
 function NextBlock() {
     const { nextBlockQueue, gameState, isHelpOn, toggleHelp } = useStore();
     const { shape, type } = nextBlockQueue[0];
@@ -66,16 +88,29 @@ function NextBlock() {
         }
     }
 
+    const labelRef = useRef();
+    const labelsButCurrent = labelArray.filter(x => x !== labelRef.current);
+
+    const label = useMemo(
+        () => labelsButCurrent[Math.floor(Math.random() * labelsButCurrent.length)]
+    , [shape]);
+
+    labelRef.current = label
+
     return (
         <ContainerCoating>
-            <Container onClick={e => e.preventDefault() || toggleHelp()}>
-                <Next>{isHelpOn ? "Next" : "?"}</Next>{
+            <Container>
+                <Next onClick={e => e.preventDefault() || toggleHelp()}>{isHelpOn ? "Next" : "?"}</Next>
+                <br/>
+                {
                 <GridWrapper shouldShow={gameState !== GAME_STATES.NEW_GAME && isHelpOn}>
                     <Grid height={shape.length} width={shape[0].length}>
                         {cells}
                     </Grid>
+                    <NextBlockLabel>{label}</NextBlockLabel>
                 </GridWrapper>
-            }</Container>
+                }
+            </Container>
         </ContainerCoating>
     );
 }
