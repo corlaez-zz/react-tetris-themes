@@ -60,7 +60,7 @@ margin-bottom: 10px;
     color: white;
 `;
 
-const labelArray = [
+const oldLabelArray = [
     'consultant',
     'DMI',
     'Non-DMI',
@@ -70,6 +70,16 @@ const labelArray = [
     'Growth',
     'Mandate',
     'Compliance',
+]
+
+const labelArray = [
+    'Employee',
+    'Intern',
+    'Vendor', //(Badge Only)
+    'SOW Worker',
+    'Managed Service',
+    'Consultant',
+    'Contract Staffing',
 ]
 
 function NextBlock() {
