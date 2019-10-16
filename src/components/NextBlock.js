@@ -23,7 +23,7 @@ const GridWrapper = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: ${props => math(`${props.theme.cellSize} * 2`)};
+    height: ${props => math(`${props.theme.cellSize} * 3`)};
     visibility: ${props => (props.shouldShow ? 'visible' : 'hidden')};
 `;
 
@@ -75,7 +75,7 @@ const oldLabelArray = [
 const labelArray = [
     'Employee',
     'Intern',
-    'Vendor', //(Badge Only)
+    'Vendor (Badge Only)',
     'SOW Worker',
     'Managed Service',
     'Consultant',
