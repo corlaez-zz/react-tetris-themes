@@ -1,7 +1,6 @@
 import React from 'react';
 import Game from './Game';
 import styled from 'styled-components';
-import { useStore } from 'store';
 import Title from './Title';
 import { fadeOut, GRID_ANIMATION_DELAY } from 'style/animations';
 
@@ -56,13 +55,10 @@ const RandomizeButton = styled.span`
 `;
 
 function Page() {
-    const { randomizeTheme } = useStore();
-
     return (
         <StyledPage>
             <Header>
                 <Title />
-                <RandomizeButton onClick={randomizeTheme}>Randomize Theme</RandomizeButton>
             </Header>
             <GameArea>
                 <Game />
