@@ -1,3 +1,3 @@
 export default {
-    STARTING: 800,
+    STARTING: 600,
 };

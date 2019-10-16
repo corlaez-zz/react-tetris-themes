@@ -206,7 +206,7 @@ function StateProvider(props) {
             }, []);
 
             if(clearedRowNumbers.length > 0) {
-                score > 1000 && setGameSpeed(gameSpeed - 20)
+                score > 200 && setGameSpeed(gameSpeed - 30)
                 setScore(s => s + 100 * clearedRowNumbers.length)
             }
             /**
